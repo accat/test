@@ -27,4 +27,7 @@ bcdedit -set {%guid%} detecthal yes
 
 
 
+
+
 bcdedit -displayorder {%guid%} /addlast
+
