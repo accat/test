@@ -1,0 +1,30 @@
+for /f "delims={,} tokens=2" %a in ('bcdedit -create -d "VHD Win7" -application osloader') do set guid=%a
+
+
+
+bcdedit -set {%guid%} device vhd="[D:]\VM\Win7.vhd"
+
+
+bcdedit -set {%guid%} path \windows\system32\winload.exe
+
+
+bcdedit -set {%guid%} locale zh-CN
+
+
+bcdedit -set {%guid%} inherit {bootloadersettings}
+
+
+bcdedit -set {%guid%} osdevice vhd="[D:]\VM\Win7.vhd"
+
+
+bcdedit -set {%guid%} systemroot \windows
+
+
+bcdedit -set {%guid%} nx optin
+
+
+bcdedit -set {%guid%} detecthal yes
+
+
+
+bcdedit -displayorder {%guid%} /addlast
